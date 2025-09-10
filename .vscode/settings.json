@@ -1,0 +1,35 @@
+{
+  "go.delveConfig": {
+    "debugAdapter": "dlv-dap",
+    "dlvFlags": ["--check-go-version=false", "--only-same-user=false"],
+    "apiVersion": 2,
+    "stackTraceDepth": 50,
+    "maxStringLen": 64,
+    "maxArrayValues": 64,
+    "maxVariableRecurse": 1,
+    "followPointers": true,
+    "showGlobalVariables": false
+  },
+  "go.toolsManagement.checkForUpdates": "local",
+  "go.useLanguageServer": true,
+  "go.lintOnSave": "off",
+  "go.vetOnSave": "off",
+  "debug.allowBreakpointsEverywhere": false,
+  "debug.showBreakpointsInOverviewRuler": true,
+  "debug.showInlineBreakpointCandidates": false,
+  "debug.toolBarLocation": "docked",
+  "debug.console.acceptSuggestionOnEnter": "off",
+  "debug.javascript.breakOnConditionalError": false,
+  "debug.onTaskErrors": "showErrors",
+
+  // Go 自动格式化配置
+  "go.formatTool": "gofmt",
+  "editor.formatOnSave": true,
+  "[go]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "editor.defaultFormatter": "golang.go"
+}

@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Package",
+      "type": "go",
+      "request": "launch",
+      "program": "${workspaceFolder}",
+      "args": [],
+      "env": {},
+      "showLog": false,
+      "stopOnEntry": false,
+      "dlvFlags": ["--check-go-version=false", "--only-same-user=false"],
+      "mode": "debug",
+      "trace": "error",
+      "showGlobalVariables": false,
+      "substitutePath": [],
+      "hideSystemGoroutines": true,
+      "debugAdapter": "dlv-dap",
+      "apiVersion": 2,
+      "stackTraceDepth": 50,
+      "showRegisters": false,
+      "logOutput": "debugger",
+      "buildFlags": ""
+    }
+  ]
+}
