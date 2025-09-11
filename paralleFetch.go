@@ -8,11 +8,12 @@ import (
 	"time"
 )
 
+// main 函数本身也是一个 goroutine
 func ParallelFetch(url []string) {
 	start := time.Now()
 	ch := make(chan string)
 	for _, url := range url {
-		// 非阻塞的，发起之后就马上继续当前线程
+		// go function() 是非阻塞的，发起 goroutine 之后就马上继续当前线程
 		go fetch(url, ch, start)
 	}
 
@@ -29,7 +30,9 @@ func fetch(url string, ch chan<- string, start time.Time) {
 		ch <- fmt.Sprint(err)
 		return
 	}
-	bytes, err := io.Copy(ioutil.Discard, resp.Body)
+
+	//ioutil 可以看做一个垃圾桶， io.Copy 将 B copy 到 A 上
+	bytesLength, err := io.Copy(ioutil.Discard, resp.Body)
 	resp.Body.Close()
 	if err != nil {
 		ch <- fmt.Sprintf("从 %s 读取时出错  %v", url, err)
@@ -37,5 +40,5 @@ func fetch(url string, ch chan<- string, start time.Time) {
 	}
 	cost := time.Since(start).Seconds()
 
-	ch <- fmt.Sprintf("%.2fs %7d %s ", cost, bytes, url)
+	ch <- fmt.Sprintf("%.2fs %7d %s ", cost, bytesLength, url)
 }
